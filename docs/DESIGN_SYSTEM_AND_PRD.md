@@ -141,6 +141,7 @@ src/
 │   │   ├── Card.tsx
 │   │   ├── WireframeLogo.tsx
 │   │   ├── WhatsAppButton.tsx
+│   │   ├── Icon.tsx               # Iconoir wrapper / standard props
 │   │   └── DotBackground.tsx
 │   ├── sections/                  # [ORGANISMS]
 │   │   ├── Navbar.tsx
@@ -162,3 +163,33 @@ src/
 └── styles/
     └── index.css
 ```
+
+---
+
+## 5. Sistem Ikonografi — Iconoir (`iconoir-react`)
+
+Sesuai arahan, seluruh ikonografi di website Z Developer wajib menggunakan **Iconoir** (https://iconoir.com / package: `iconoir-react`).
+
+### A. Alasan Pemilihan & Nilai Desain
+- **Karakter Visual Konsisten**: Grid 24x24 px dengan stroke 1.5px bawaan sangat selaras dengan gaya modern, clean, dan presisi tinggi dari ChronoTask (Outcrowd).
+- **1300+ Ikon Terpadu**: Meliputi navigasi, tech stack, aksi bisnis, hingga brand icon yang dibutuhkan (termasuk WhatsApp, panah, checkmark, eksternal link, dll.).
+- **Performa & Bundle Size**: Full tree-shakeable via `iconoir-react`. Hanya icon yang di-import yang akan masuk bundle produksi.
+- **Standar Ekosistem**: Open source, zero dependency runtime, support SVG props standar React.
+
+### B. Konvensi Token Ukuran Ikon
+| Token Ukuran | Dimensi (px / rem) | Contoh Penggunaan |
+|---|---|---|
+| `icon-xs` | 14px / 0.875rem | Inline chip label, status badge kecil |
+| `icon-sm` | 16px / 1rem | PillBadge, inline link teks, tooltip |
+| `icon-base` | 20px / 1.25rem | Button icon, form inputs, list checkmark |
+| `icon-lg` | 24px / 1.5rem | Navigation items, mobile menu toggle, FAB |
+| `icon-xl` | 32px / 2rem | Service / feature highlight card headers |
+
+### C. Panduan Penggunaan & Aksesibilitas
+1. **Warna Default**: Selalu gunakan `currentColor` agar icon secara otomatis mewarisi warna teks/elemen induknya dan responsif terhadap status hover/active.
+2. **Stroke Width**: Pertahankan `strokeWidth={1.5}` untuk konsistensi garis di seluruh tampilan.
+3. **Aksesibilitas (a11y)**:
+   - **Ikon Dekoratif**: Wajib menyertakan `aria-hidden="true"` ketika sudah ada teks pendamping (e.g. `<Button><Send aria-hidden="true" /> Kirim</Button>`).
+   - **Ikon Tombol Mandiri (Icon-only Button)**: Wajib menyediakan `aria-label` yang jelas pada elemen interaktif induknya (e.g. `<button aria-label="Buka navigasi mobile"><Menu aria-hidden="true" /></button>`).
+4. **Komponen Pembungkus (`Icon.tsx`)**: Disediakan atom helper untuk memastikan keseragaman ukuran token Tailwind dan atribut a11y.
+
