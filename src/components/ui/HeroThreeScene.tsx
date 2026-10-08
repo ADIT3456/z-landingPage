@@ -399,7 +399,7 @@ export const HeroThreeScene: React.FC<HeroThreeSceneProps> = ({ className = '' }
       planeGeo.dispose();
 
       // Dispose all geometries, materials, and textures
-      scene.traverse((obj) => {
+      scene.traverse((obj: THREE.Object3D) => {
         if (
           obj instanceof THREE.Mesh ||
           obj instanceof THREE.LineSegments ||
@@ -408,13 +408,13 @@ export const HeroThreeScene: React.FC<HeroThreeSceneProps> = ({ className = '' }
           if (obj.geometry) obj.geometry.dispose();
           if (obj.material) {
             if (Array.isArray(obj.material)) {
-              obj.material.forEach((m) => {
-                if ('map' in m && m.map) m.map.dispose();
+              obj.material.forEach((m: THREE.Material) => {
+                if ('map' in m && (m as any).map) (m as any).map.dispose();
                 m.dispose();
               });
             } else {
-              if ('map' in obj.material && obj.material.map) {
-                (obj.material.map as THREE.Texture).dispose();
+              if ('map' in obj.material && (obj.material as any).map) {
+                ((obj.material as any).map as THREE.Texture).dispose();
               }
               obj.material.dispose();
             }
