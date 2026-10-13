@@ -30,7 +30,7 @@ export const ContactSection: React.FC = () => {
     // Nomor telepon hanya boleh digit, spasi, dash, dan diawali optional + (8-20 karakter)
     const phoneRegex = /^\+?[0-9\s-]{8,20}$/;
     if (!cleanPhone || !phoneRegex.test(cleanPhone)) {
-      setError('Nomor WhatsApp tidak valid (masukkan 8-20 digit angka, contoh: 08123456789 atau +6281234567890).');
+      setError('Nomor WhatsApp tidak valid (masukkan 8-20 digit angka, contoh: 08123456789 atau +6285187228960).');
       return;
     }
 
@@ -42,7 +42,7 @@ export const ContactSection: React.FC = () => {
     )}%0A*WhatsApp*: ${encodeURIComponent(cleanPhone)}%0A*Paket*: ${encodeURIComponent(
       formData.packageType
     )}`;
-    const url = `https://wa.me/6281234567890?text=${message}`;
+    const url = `https://wa.me/6285187228960?text=${message}`;
 
     setSubmitted(true);
     window.open(url, '_blank');
@@ -91,7 +91,7 @@ export const ContactSection: React.FC = () => {
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
                 {/* Direct WhatsApp CTA */}
                 <a
-                  href="https://wa.me/6281234567890?text=Halo%20Z%20Developer,%20saya%20tertarik%20konsultasi%20pembuatan%20website"
+                  href="https://wa.me/6285187228960?text=Halo%20Z%20Developer,%20saya%20tertarik%20konsultasi%20pembuatan%20website"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-bold text-sm bg-emerald-500 hover:bg-emerald-600 text-white shadow-xl shadow-emerald-500/20 transform hover:-translate-y-0.5 transition-all duration-200"
@@ -175,7 +175,7 @@ export const ContactSection: React.FC = () => {
                         required
                         maxLength={20}
                         pattern="^\+?[0-9\s-]{8,20}$"
-                        title="Nomor telepon aktif, 8-20 karakter angka, contoh: 08123456789 atau +6281234567890"
+                        title="Nomor telepon aktif, 8-20 karakter angka, contoh: 08123456789 atau +6285187228960"
                         value={formData.phone}
                         onChange={(e) => {
                           const sanitized = e.target.value.replace(/[^0-9+\s-]/g, '').slice(0, 20);

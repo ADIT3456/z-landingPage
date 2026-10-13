@@ -81,7 +81,7 @@ export const PortfolioSection: React.FC = () => {
               <Button
                 variant="primary"
                 size="md"
-                href="https://wa.me/6281234567890?text=Halo%20Z%20Developer,%20saya%20ingin%20konsultasi%20dan%20melihat%20sampel%20website"
+                href="https://wa.me/6285187228960?text=Halo%20Z%20Developer,%20saya%20ingin%20konsultasi%20dan%20melihat%20sampel%20website"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto shadow-lg shadow-blue-500/25"
@@ -179,43 +179,77 @@ export const PortfolioSection: React.FC = () => {
             )}
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-              {portfolioProjects.map((project) => (
-                <div
-                  key={project.id}
-                  className="group rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-xl hover:border-blue-400/80 dark:hover:border-blue-500/60 transition-all duration-300 flex flex-col"
-                >
-                  <div
-                    className={`relative h-48 bg-gradient-to-br ${project.gradient} p-4 flex flex-col justify-between overflow-hidden`}
+              {portfolioProjects.map((project) => {
+                const CardWrapper = project.liveUrl ? 'a' : 'div';
+                const wrapperProps = project.liveUrl
+                  ? {
+                      href: project.liveUrl,
+                      target: '_blank',
+                      rel: 'noopener noreferrer',
+                    }
+                  : {};
+
+                return (
+                  <CardWrapper
+                    key={project.id}
+                    {...wrapperProps}
+                    className="group rounded-2xl bg-white dark:bg-slate-900 border border-slate-200/90 dark:border-slate-800 overflow-hidden shadow-sm hover:shadow-xl hover:border-blue-400/80 dark:hover:border-blue-500/60 transition-all duration-300 flex flex-col cursor-pointer"
                   >
-                    <div className="flex justify-between items-center z-10">
-                      <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-white/10 text-white backdrop-blur-sm border border-white/20">
-                        {project.category}
-                      </span>
-                      <span className="text-xs font-bold text-white">
-                        {project.statusBadge}
-                      </span>
+                    <div
+                      className={`relative h-48 p-4 flex flex-col justify-between overflow-hidden ${
+                        project.image ? 'bg-slate-200 dark:bg-slate-800' : `bg-gradient-to-br ${project.gradient}`
+                      }`}
+                    >
+                      {project.image && (
+                        <>
+                          <img
+                            src={project.image}
+                            alt={project.title}
+                            className="absolute inset-0 w-full h-full object-cover object-top"
+                            loading="lazy"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                        </>
+                      )}
+                      <div className="relative flex justify-between items-center z-10">
+                        <span className="px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-white/10 text-white backdrop-blur-sm border border-white/20">
+                          {project.category}
+                        </span>
+                        <span className="text-xs font-bold text-white">
+                          {project.statusBadge}
+                        </span>
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="p-6 flex-1 flex flex-col">
-                    <h4 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mb-1.5">
-                      {project.title}
-                    </h4>
-                    <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
-                      {project.description}
-                    </p>
+                    <div className="p-6 flex-1 flex flex-col">
+                      <h4 className="text-lg font-bold text-slate-900 dark:text-white group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors mb-1.5">
+                        {project.title}
+                      </h4>
+                      <p className="text-xs sm:text-sm text-slate-600 dark:text-slate-300 mb-4 leading-relaxed">
+                        {project.description}
+                      </p>
 
-                    <div className="mt-auto pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
-                      <span className="font-medium text-slate-500 dark:text-slate-400">
-                        {project.tags.join(' · ')}
-                      </span>
-                      <span className="font-semibold text-blue-600 dark:text-blue-400">
-                        {project.typeBadge}
-                      </span>
+                      <div className="mt-auto pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between text-xs">
+                        <span className="font-medium text-slate-500 dark:text-slate-400">
+                          {project.tags.join(' · ')}
+                        </span>
+                        {project.liveUrl ? (
+                          <span className="font-semibold text-blue-600 dark:text-blue-400 flex items-center gap-1">
+                            Lihat Live
+                            <Icon size="xs" aria-hidden="true">
+                              <ArrowRight />
+                            </Icon>
+                          </span>
+                        ) : (
+                          <span className="font-semibold text-blue-600 dark:text-blue-400">
+                            {project.typeBadge}
+                          </span>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </div>
-              ))}
+                  </CardWrapper>
+                );
+              })}
             </div>
           </>
         )}
