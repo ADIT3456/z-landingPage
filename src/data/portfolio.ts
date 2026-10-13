@@ -7,6 +7,7 @@ export interface PortfolioProject {
   typeBadge: string;
   statusBadge: string;
   gradient: string;
+  image?: string;
   liveUrl?: string;
   version?: string;
   metrics?: { label: string; value: string }[];
@@ -16,9 +17,19 @@ export interface PortfolioProject {
   };
 }
 
-/**
- * Konten portofolio dikosongkan sementara sesuai arahan.
- * Struktur data model dipertahankan agar dapat diisi dokumentasi portofolio asli nanti.
- */
 export const featuredProject: PortfolioProject | null = null;
-export const portfolioProjects: PortfolioProject[] = [];
+
+export const portfolioProjects: PortfolioProject[] = [
+  {
+    id: 'portfolio-aditriyawan',
+    title: 'Website Haircut',
+    category: 'Booking System',
+    description: 'Pemesanan lebih mudah dikelola, pelanggan bisa reservasi jadwal potong rambut langsung dari website.',
+    tags: ['React', 'Tailwind CSS'],
+    typeBadge: 'Live Project',
+    statusBadge: 'Live',
+    gradient: 'from-blue-600 to-indigo-600',
+    image: 'https://s.wordpress.com/mshots/v1/https%3A%2F%2Faditriyawan.my.id?w=800',
+    liveUrl: 'https://aditriyawan.my.id',
+  },
+];

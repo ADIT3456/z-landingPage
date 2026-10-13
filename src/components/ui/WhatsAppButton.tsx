@@ -9,7 +9,7 @@ export interface WhatsAppButtonProps {
 }
 
 export const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
-  phoneNumber = '6281234567890',
+  phoneNumber = '6285187228960',
   defaultMessage = 'Halo Z Developer, saya tertarik konsultasi pembuatan website.',
   className = '',
 }) => {
