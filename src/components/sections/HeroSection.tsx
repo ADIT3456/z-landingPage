@@ -29,15 +29,13 @@ export const HeroSection: React.FC = () => {
               Website Cepat, Rapi &amp; Siap Pakai
             </span>
             <span className="block text-slate-400 font-semibold text-lg sm:text-2xl md:text-3xl mt-1.5 sm:mt-2">
-              tanpa ribet, tanpa drama revisi berlarut.
+              untuk kebutuhan bisnis Anda.
             </span>
           </h1>
 
           {/* 3. Supportive Subheadline */}
           <p className="max-w-2xl text-sm sm:text-base md:text-lg text-slate-400 font-normal leading-relaxed mb-8">
-            Z Developer merancang dan membangun landing page berkonversi tinggi, company profile
-            profesional, hingga web app custom dengan arsitektur modern, performa responsif, dan kode
-            bersih.
+            Z Developer membuat landing page, company profile, dan aplikasi web sesuai kebutuhan bisnis Anda.
           </p>
 
           {/* 4. CTA Buttons Group */}
@@ -67,7 +65,7 @@ export const HeroSection: React.FC = () => {
                 </Icon>
               }
             >
-              Lihat Portfolio
+              Lihat Portofolio
             </Button>
           </div>
 

@@ -36,6 +36,16 @@ export const ContactSection: React.FC = () => {
 
     setError(null);
 
+    const submitter = (e.nativeEvent as SubmitEvent).submitter;
+    if (submitter instanceof HTMLButtonElement && submitter.value === 'email') {
+      const subject = encodeURIComponent('Konsultasi Website');
+      const body = encodeURIComponent(
+        `Halo Z Developer, saya ingin konsultasi website.\n\nNama: ${cleanName}\nWhatsApp: ${cleanPhone}\nPaket: ${formData.packageType}`
+      );
+      window.location.href = `mailto:contact@zdev.id?subject=${subject}&body=${body}`;
+      return;
+    }
+
     // Build WhatsApp message
     const message = `Halo Z Developer, saya ingin konsultasi website.%0A%0A*Nama*: ${encodeURIComponent(
       cleanName
@@ -44,8 +54,13 @@ export const ContactSection: React.FC = () => {
     )}`;
     const url = `https://wa.me/6281234567890?text=${message}`;
 
+    const whatsappWindow = window.open(url, '_blank');
+    if (!whatsappWindow) {
+      window.location.href = url;
+      return;
+    }
+    whatsappWindow.opener = null;
     setSubmitted(true);
-    window.open(url, '_blank');
   };
 
   return (
@@ -71,21 +86,16 @@ export const ContactSection: React.FC = () => {
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
             {/* Left: Pitch & CTA */}
             <div className="lg:col-span-7 space-y-6">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/30 text-blue-300 text-xs font-semibold">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>Slot Project Bulan Ini Terbuka</span>
-              </div>
-
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
-                Punya Rencana Website? <br className="hidden sm:inline" />
+                Ceritakan Rencana Website Anda <br className="hidden sm:inline" />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-cyan-300">
-                  Mari Diskusi Langsung.
+                  Mari Diskusikan.
                 </span>
               </h2>
 
               <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-xl">
-                Ceritakan kebutuhan bisnis Anda. Kami bantu bedah struktur halaman, rekomendasi
-                teknologi terbaik, dan perkiraan estimasi biaya tanpa komitmen awal apapun.
+                Ceritakan website yang Anda butuhkan. Kami akan membantu membahas fitur,
+                pilihan paket, dan perkiraan biaya.
               </p>
 
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
@@ -118,9 +128,9 @@ export const ContactSection: React.FC = () => {
             {/* Right: Quick Request Form */}
             <div className="lg:col-span-5">
               <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-white/10 shadow-lg">
-                <h3 className="text-lg font-bold text-white mb-2">Form Singkat Request Demo</h3>
+                <h3 className="text-lg font-bold text-white mb-2">Mulai Konsultasi</h3>
                 <p className="text-xs text-slate-300 mb-5">
-                  Isi detail kebutuhan Anda dan kami akan hubungi dalam 1x24 jam.
+                  Isi formulir untuk menyiapkan pesan konsultasi melalui WhatsApp atau email.
                 </p>
 
                 {submitted ? (
@@ -130,9 +140,9 @@ export const ContactSection: React.FC = () => {
                         <Check />
                       </Icon>
                     </div>
-                    <p className="font-bold text-white">Permintaan Terkirim!</p>
+                    <p className="font-bold text-white">Pesan Siap Dikirim</p>
                     <p className="text-xs text-emerald-300">
-                      WhatsApp Anda sedang dibuka. Tim kami segera menanggapi.
+                      Lanjutkan ke WhatsApp dan kirim pesan untuk memulai percakapan.
                     </p>
                   </div>
                 ) : (
@@ -208,9 +218,19 @@ export const ContactSection: React.FC = () => {
                       type="submit"
                       className="w-full py-3 px-4 rounded-xl font-bold text-xs sm:text-sm bg-blue-600 hover:bg-blue-500 text-white shadow-md transition-colors flex items-center justify-center gap-2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400"
                     >
-                      <span>Kirim &amp; Dapatkan Penawaran</span>
+                      <span>Lanjutkan ke WhatsApp</span>
                       <Icon size="xs" aria-hidden="true">
                         <Send />
+                      </Icon>
+                    </button>
+                    <button
+                      type="submit"
+                      value="email"
+                      className="w-full py-3 px-4 rounded-xl font-bold text-xs sm:text-sm bg-slate-800 hover:bg-slate-700 text-white border border-slate-600 transition-colors flex items-center justify-center gap-2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400"
+                    >
+                      <span>Lanjutkan ke Email</span>
+                      <Icon size="xs" aria-hidden="true">
+                        <Mail />
                       </Icon>
                     </button>
                   </form>
