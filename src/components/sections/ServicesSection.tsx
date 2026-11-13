@@ -35,10 +35,10 @@ export const ServicesSection: React.FC = () => {
             </PillBadge>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-950 dark:text-white leading-tight mb-5">
-            {t("Solusi Website Tepat Guna Sesuai Skala Bisnis Anda", "Website Solutions Tailored to Your Business")}
+            {t("Layanan Pembuatan Website", "Website Development Services")}
           </h2>
           <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
-            {t("Bukan template generik pasaran. Kami membangun website dari nol dengan clean code, desain\neksklusif, serta performa kilat yang siap menghasilkan leads dan transaksi.", "No generic templates. We build websites from scratch with clean code, distinctive designs, and fast performance to generate leads and sales.")}
+            {t("Pilih layanan sesuai kebutuhan Anda, mulai dari landing page hingga aplikasi web.", "Choose the service you need, from landing pages to web applications.")}
           </p>
         </div>
 

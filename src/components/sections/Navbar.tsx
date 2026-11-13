@@ -12,7 +12,7 @@ export const Navbar: React.FC = () => {
 
   const navLinks = [
     { label: t('Layanan', 'Services'), href: '#layanan' },
-    { label: 'Portfolio', href: '#portfolio' },
+    { label: t('Portofolio', 'Portfolio'), href: '#portfolio' },
     { label: t('Harga', 'Pricing'), href: '#harga' },
     { label: t('Kontak', 'Contact'), href: '#kontak' },
   ];
