@@ -18,7 +18,7 @@ export const Footer: React.FC = () => {
               </span>
             </div>
             <p className="text-sm text-slate-500 dark:text-slate-400 max-w-sm leading-relaxed">
-              {t("Jasa pembuatan landing page, company profile, dan aplikasi web untuk bisnis Anda.", "Landing pages, company profiles, and web applications for your business.")}
+              Jasa pembuatan landing page, company profile, dan aplikasi web untuk bisnis Anda.
             </p>
             <div className="text-xs text-slate-500 flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-emerald-500" />

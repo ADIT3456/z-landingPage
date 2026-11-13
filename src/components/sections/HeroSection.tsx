@@ -31,13 +31,13 @@ export const HeroSection: React.FC = () => {
               {t("Website Cepat, Rapi & Siap Pakai", "Fast, Polished Websites Ready to Launch")}
             </span>
             <span className="block text-slate-400 font-semibold text-lg sm:text-2xl md:text-3xl mt-1.5 sm:mt-2">
-              {t("untuk kebutuhan bisnis Anda.", "for your business needs.")}
+              untuk kebutuhan bisnis Anda.
             </span>
           </h1>
 
           {/* 3. Supportive Subheadline */}
           <p className="max-w-2xl text-sm sm:text-base md:text-lg text-slate-400 font-normal leading-relaxed mb-8">
-            {t("Z Developer membuat landing page, company profile, dan aplikasi web sesuai kebutuhan bisnis Anda.", "Z Developer builds landing pages, company profiles, and web applications tailored to your business needs.")}
+            Z Developer membuat landing page, company profile, dan aplikasi web sesuai kebutuhan bisnis Anda.
           </p>
 
           {/* 4. CTA Buttons Group */}

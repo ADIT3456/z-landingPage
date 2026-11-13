@@ -46,8 +46,10 @@ export const ContactSection: React.FC = () => {
 
     const submitter = (e.nativeEvent as SubmitEvent).submitter;
     if (submitter instanceof HTMLButtonElement && submitter.value === 'email') {
-      const subject = encodeURIComponent(t('Konsultasi Website', 'Website Consultation'));
-      const body = encodeURIComponent(`${t('Halo Z Developer, saya ingin konsultasi website.', 'Hello Z Developer, I would like a website consultation.')}\n\n${t('Nama', 'Name')}: ${cleanName}\nWhatsApp: ${cleanPhone}\n${t('Paket', 'Package')}: ${packages[formData.packageType]}`);
+      const subject = encodeURIComponent('Konsultasi Website');
+      const body = encodeURIComponent(
+        `Halo Z Developer, saya ingin konsultasi website.\n\nNama: ${cleanName}\nWhatsApp: ${cleanPhone}\nPaket: ${formData.packageType}`
+      );
       window.location.href = `mailto:contact@zdev.id?subject=${subject}&body=${body}`;
       return;
     }
@@ -89,14 +91,15 @@ export const ContactSection: React.FC = () => {
             {/* Left: Pitch & CTA */}
             <div className="lg:col-span-7 space-y-6">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
-                {t("Ceritakan Rencana Website Anda", "Tell Us About Your Website Plans")} <br className="hidden sm:inline" />
+                Ceritakan Rencana Website Anda <br className="hidden sm:inline" />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-cyan-300">
-                  {t("Mari Diskusikan.", "Let's Discuss Them.")}
+                  Mari Diskusikan.
                 </span>
               </h2>
 
               <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-xl">
-                {t("Ceritakan website yang Anda butuhkan. Kami akan membantu membahas fitur, pilihan paket, dan perkiraan biaya.", "Tell us about the website you need. We will help discuss features, package options, and estimated costs.")}
+                Ceritakan website yang Anda butuhkan. Kami akan membantu membahas fitur,
+                pilihan paket, dan perkiraan biaya.
               </p>
 
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
@@ -129,9 +132,9 @@ export const ContactSection: React.FC = () => {
             {/* Right: Quick Request Form */}
             <div className="lg:col-span-5">
               <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-white/10 shadow-lg">
-                <h3 className="text-lg font-bold text-white mb-2">{t("Mulai Konsultasi", "Start a Consultation")}</h3>
+                <h3 className="text-lg font-bold text-white mb-2">Mulai Konsultasi</h3>
                 <p className="text-xs text-slate-300 mb-5">
-                  {t("Isi formulir untuk menyiapkan pesan konsultasi melalui WhatsApp atau email.", "Complete the form to prepare a consultation message via WhatsApp or email.")}
+                  Isi formulir untuk menyiapkan pesan konsultasi melalui WhatsApp atau email.
                 </p>
 
                 {submitted ? (
@@ -141,9 +144,9 @@ export const ContactSection: React.FC = () => {
                         <Check />
                       </Icon>
                     </div>
-                    <p className="font-bold text-white">{t("Pesan Siap Dikirim", "Message Ready to Send")}</p>
+                    <p className="font-bold text-white">Pesan Siap Dikirim</p>
                     <p className="text-xs text-emerald-300">
-                      {t("Lanjutkan ke WhatsApp dan kirim pesan untuk memulai percakapan.", "Continue to WhatsApp and send the message to start the conversation.")}
+                      Lanjutkan ke WhatsApp dan kirim pesan untuk memulai percakapan.
                     </p>
                   </div>
                 ) : (
@@ -216,7 +219,7 @@ export const ContactSection: React.FC = () => {
                       type="submit"
                       className="w-full py-3 px-4 rounded-xl font-bold text-xs sm:text-sm bg-blue-600 hover:bg-blue-500 text-white shadow-md transition-colors flex items-center justify-center gap-2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400"
                     >
-                      <span>{t("Lanjutkan ke WhatsApp", "Continue to WhatsApp")}</span>
+                      <span>Lanjutkan ke WhatsApp</span>
                       <Icon size="xs" aria-hidden="true">
                         <Send />
                       </Icon>
@@ -226,8 +229,10 @@ export const ContactSection: React.FC = () => {
                       value="email"
                       className="w-full py-3 px-4 rounded-xl font-bold text-xs sm:text-sm bg-slate-800 hover:bg-slate-700 text-white border border-slate-600 transition-colors flex items-center justify-center gap-2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400"
                     >
-                      <span>{t('Lanjutkan ke Email', 'Continue to Email')}</span>
-                      <Icon size="xs" aria-hidden="true"><Mail /></Icon>
+                      <span>Lanjutkan ke Email</span>
+                      <Icon size="xs" aria-hidden="true">
+                        <Mail />
+                      </Icon>
                     </button>
                   </form>
                 )}
