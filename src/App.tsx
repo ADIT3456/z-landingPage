@@ -1,4 +1,5 @@
 import React from 'react';
+import { LanguageProvider } from './context/LanguageContext';
 import { ThemeProvider } from './context/ThemeContext';
 import { Navbar } from './components/sections/Navbar';
 import { HeroSection } from './components/sections/HeroSection';
@@ -11,6 +12,7 @@ import { WhatsAppButton } from './components/ui/WhatsAppButton';
 
 export const App: React.FC = () => {
   return (
+    <LanguageProvider>
     <ThemeProvider>
       <div className="min-h-screen flex flex-col bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100 selection:bg-blue-600 selection:text-white transition-colors duration-200">
         <Navbar />
@@ -25,6 +27,7 @@ export const App: React.FC = () => {
         <WhatsAppButton />
       </div>
     </ThemeProvider>
+    </LanguageProvider>
   );
 };
 

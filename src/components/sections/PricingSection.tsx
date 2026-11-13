@@ -1,12 +1,14 @@
+import { useLanguage } from '../../context/LanguageContext';
 import React from 'react';
 import { Container } from '../layout/Container';
 import { PillBadge } from '../ui/PillBadge';
 import { Icon } from '../ui/Icon';
 import { Button } from '../ui/Button';
-import { pricingTiers } from '../../data/pricing';
+import { pricingTiers, englishPricingTiers } from '../../data/pricing';
 import { Check, Star, Clock } from 'iconoir-react';
 
 export const PricingSection: React.FC = () => {
+  const { t, language } = useLanguage();
   return (
     <section
       id="harga"
@@ -24,21 +26,20 @@ export const PricingSection: React.FC = () => {
                 </Icon>
               }
             >
-              Investasi Transparan
+              {t("Investasi Transparan", "Transparent Pricing")}
             </PillBadge>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-950 dark:text-white leading-tight mb-5">
-            Pilihan Paket Sesuai Kebutuhan
+            {t("Pilihan Paket Sesuai Kebutuhan", "Choose the Right Package")}
           </h2>
           <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
-            Tanpa biaya tersembunyi. Setiap paket sudah mencakup pengerjaan bersih, optimalisasi mobile
-            &amp; SEO, dan penyerahan penuh source code milik Anda.
+            {t("Tanpa biaya tersembunyi. Setiap paket sudah mencakup pengerjaan bersih, optimalisasi mobile\n& SEO, dan penyerahan penuh source code milik Anda.", "No hidden fees. Every package includes clean code, mobile and SEO optimization, and full ownership of your source code.")}
           </p>
         </div>
 
         {/* 3 Pricing Cards Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch max-w-7xl mx-auto">
-          {pricingTiers.map((tier) => {
+          {(language === 'en' ? englishPricingTiers : pricingTiers).map((tier) => {
             const isHighlight = tier.isPopular;
 
             return (
@@ -56,7 +57,7 @@ export const PricingSection: React.FC = () => {
                     <Icon size="xs" aria-hidden="true" className="text-amber-300">
                       <Star />
                     </Icon>
-                    <span>Paling Populer &amp; Diminati</span>
+                    <span>{t("Paling Populer & Diminati", "Most Popular")}</span>
                   </div>
                 )}
 
@@ -87,7 +88,7 @@ export const PricingSection: React.FC = () => {
                         : 'border-slate-200/80 dark:border-slate-700/80'
                     }`}
                   >
-                    <span className="text-xs text-slate-500">Mulai dari</span>
+                    <span className="text-xs text-slate-500">{t("Mulai dari", "Starting at")}</span>
                     <div className="flex items-baseline gap-1 mt-1">
                       <span
                         className={`text-3xl sm:text-4xl font-extrabold tracking-tight ${

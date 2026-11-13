@@ -60,3 +60,9 @@ export const services: ServiceItem[] = [
     badgeColor: 'cyan',
   },
 ];
+
+export const englishServices: ServiceItem[] = [
+  { ...services[0], subtitle: 'Conversion-Focused & Fast Campaigns', description: 'A persuasive page designed for ad campaigns, product launches, or service offers. Proven copy encourages clicks and conversations.', features: ['Storytelling & Optimized CTA Placement', 'Direct WhatsApp & Meta Pixel Integration', 'Estimated Delivery: 3–5 Working Days'], ctaText: 'View Landing Page Package' },
+  { ...services[1], subtitle: 'Credibility & Multi-Page Business Websites', description: 'Build a trusted reputation with business partners, investors, and customers through elegant, well-organized multi-page navigation.', features: ['Complete Page Structure (About, Services, Team)', 'SEO Architecture & Google Indexing', 'CMS Ready (Easy article & portfolio updates)'], ctaText: 'View Company Profile Package' },
+  { ...services[2], subtitle: 'Automated Workflows, Dashboards & Custom Features', description: 'A web system tailored to internal operations, SaaS platforms, custom e-commerce, or unique business process automation.', features: ['Full-Stack Architecture (Auth, Database, API)', 'Admin Dashboard & Role-Based Access', 'Payment Gateway & Third-Party API Integration'], ctaText: 'View Web App Package' },
+];

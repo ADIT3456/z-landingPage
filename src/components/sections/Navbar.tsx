@@ -1,3 +1,4 @@
+import { useLanguage } from '../../context/LanguageContext';
 import React, { useState } from 'react';
 import { Button } from '../ui/Button';
 import { Icon } from '../ui/Icon';
@@ -6,13 +7,14 @@ import { Menu, Xmark, ArrowRight } from 'iconoir-react';
 import { Container } from '../layout/Container';
 
 export const Navbar: React.FC = () => {
+  const { t, language, setLanguage } = useLanguage();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navLinks = [
-    { label: 'Layanan', href: '#layanan' },
+    { label: t('Layanan', 'Services'), href: '#layanan' },
     { label: 'Portfolio', href: '#portfolio' },
-    { label: 'Harga', href: '#harga' },
-    { label: 'Kontak', href: '#kontak' },
+    { label: t('Harga', 'Pricing'), href: '#harga' },
+    { label: t('Kontak', 'Contact'), href: '#kontak' },
   ];
 
   return (
@@ -23,15 +25,15 @@ export const Navbar: React.FC = () => {
           <a
             href="#"
             className="flex items-center group select-none py-1"
-            aria-label="Z Developer Beranda"
+            aria-label={t('Z Developer Beranda', 'Z Developer Home')}
           >
-            <span className="text-xl sm:text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">
+            <span className="text-lg sm:text-2xl font-extrabold tracking-tight text-slate-900 dark:text-white">
               Z<span className="text-blue-600 dark:text-blue-500">Developer</span>
             </span>
           </a>
 
           {/* Desktop Navigation Links */}
-          <nav className="hidden md:flex items-center gap-1 lg:gap-2" aria-label="Main Navigation">
+          <nav className="hidden md:flex items-center gap-1 lg:gap-2" aria-label={t('Navigasi utama', 'Main navigation')}>
             {navLinks.map((link) => (
               <a
                 key={link.href}
@@ -44,12 +46,21 @@ export const Navbar: React.FC = () => {
           </nav>
 
           {/* Action Area: Theme Toggle & CTA Buttons */}
-          <div className="flex items-center gap-2 sm:gap-3">
+          <div className="flex items-center gap-1 sm:gap-3">
             {/* Theme Toggle Button di Pojok Navbar */}
+            <div role="group" aria-label={t('Pilih bahasa', 'Choose language')} className="flex items-center rounded-lg border border-slate-200 dark:border-slate-700 p-0.5">
+              {(['id', 'en'] as const).map((option) => (
+                <button key={option} type="button" lang={option} aria-pressed={language === option}
+                  aria-label={option === 'id' ? 'Bahasa Indonesia' : 'English'} onClick={() => setLanguage(option)}
+                  className={`px-2 py-1.5 text-xs font-bold rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 ${language === option ? 'bg-blue-600 text-white' : 'text-slate-600 dark:text-slate-300'}`}>
+                  {option.toUpperCase()}
+                </button>
+              ))}
+            </div>
             <ThemeToggle />
 
             {/* Desktop CTA Button */}
-            <div className="hidden sm:block">
+            <div className="hidden lg:block">
               <Button
                 variant="primary"
                 size="md"
@@ -61,7 +72,7 @@ export const Navbar: React.FC = () => {
                   </Icon>
                 }
               >
-                Konsultasi Gratis
+                {t("Konsultasi Gratis", "Free Consultation")}
               </Button>
             </div>
 
@@ -70,7 +81,7 @@ export const Navbar: React.FC = () => {
               type="button"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="md:hidden inline-flex items-center justify-center p-2 rounded-lg text-slate-700 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-              aria-label={mobileMenuOpen ? 'Tutup navigasi mobile' : 'Buka navigasi mobile'}
+              aria-label={mobileMenuOpen ? t('Tutup navigasi mobile', 'Close mobile navigation') : t('Buka navigasi mobile', 'Open mobile navigation')}
               aria-expanded={mobileMenuOpen}
             >
               <Icon size="lg" aria-hidden="true">
@@ -106,7 +117,7 @@ export const Navbar: React.FC = () => {
                   </Icon>
                 }
               >
-                Konsultasi Gratis
+                {t("Konsultasi Gratis", "Free Consultation")}
               </Button>
             </div>
           </div>

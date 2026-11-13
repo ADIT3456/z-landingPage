@@ -1,3 +1,4 @@
+import { useLanguage } from '../../context/LanguageContext';
 import React from 'react';
 import { Button } from '../ui/Button';
 import { Container } from '../layout/Container';
@@ -6,6 +7,7 @@ import { ArrowRight, Check, ViewColumns2 } from 'iconoir-react';
 import { HeroCenterpiece } from '../ui/HeroCenterpiece';
 
 export const HeroSection: React.FC = () => {
+  const { t } = useLanguage();
   return (
     <section className="relative overflow-hidden w-full min-h-[calc(100vh-5rem)] flex flex-col justify-center items-center bg-black text-white pt-4 pb-12 sm:pb-16 select-none">
       {/* Ambient Deep Space Subtle Glow Accents */}
@@ -26,18 +28,16 @@ export const HeroSection: React.FC = () => {
           {/* 2. 2-Line Headline */}
           <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.14] mb-4">
             <span className="block text-white">
-              Website Cepat, Rapi &amp; Siap Pakai
+              {t("Website Cepat, Rapi & Siap Pakai", "Fast, Polished Websites Ready to Launch")}
             </span>
             <span className="block text-slate-400 font-semibold text-lg sm:text-2xl md:text-3xl mt-1.5 sm:mt-2">
-              tanpa ribet, tanpa drama revisi berlarut.
+              {t("tanpa ribet, tanpa drama revisi berlarut.", "without the hassle or endless revisions.")}
             </span>
           </h1>
 
           {/* 3. Supportive Subheadline */}
           <p className="max-w-2xl text-sm sm:text-base md:text-lg text-slate-400 font-normal leading-relaxed mb-8">
-            Z Developer merancang dan membangun landing page berkonversi tinggi, company profile
-            profesional, hingga web app custom dengan arsitektur modern, performa responsif, dan kode
-            bersih.
+            {t("Z Developer merancang dan membangun landing page berkonversi tinggi, company profile\nprofesional, hingga web app custom dengan arsitektur modern, performa responsif, dan kode\nbersih.", "Z Developer designs and builds high-converting landing pages, professional company profiles, and custom web apps with modern architecture, responsive performance, and clean code.")}
           </p>
 
           {/* 4. CTA Buttons Group */}
@@ -53,7 +53,7 @@ export const HeroSection: React.FC = () => {
                 </Icon>
               }
             >
-              Konsultasi Gratis
+              {t("Konsultasi Gratis", "Free Consultation")}
             </Button>
 
             <Button
@@ -67,7 +67,7 @@ export const HeroSection: React.FC = () => {
                 </Icon>
               }
             >
-              Lihat Portfolio
+              {t("Lihat Portfolio", "View Portfolio")}
             </Button>
           </div>
 
@@ -77,7 +77,7 @@ export const HeroSection: React.FC = () => {
               <Icon size="sm" aria-hidden="true" className="text-blue-400">
                 <Check />
               </Icon>
-              <span>Garansi Pengerjaan Tepat Waktu</span>
+              <span>{t("Garansi Pengerjaan Tepat Waktu", "On-Time Delivery Guarantee")}</span>
             </div>
             <div className="flex items-center gap-2">
               <Icon size="sm" aria-hidden="true" className="text-blue-400">
@@ -89,7 +89,7 @@ export const HeroSection: React.FC = () => {
               <Icon size="sm" aria-hidden="true" className="text-blue-400">
                 <Check />
               </Icon>
-              <span>Source Code Milik Anda 100%</span>
+              <span>{t("Source Code Milik Anda 100%", "You Own 100% of the Source Code")}</span>
             </div>
           </div>
         </div>

@@ -1,3 +1,4 @@
+import { useLanguage } from '../../context/LanguageContext';
 import React, { useState } from 'react';
 import { Container } from '../layout/Container';
 import { DotBackground } from '../ui/DotBackground';
@@ -5,12 +6,19 @@ import { Icon } from '../ui/Icon';
 import { Whatsapp, Mail, Send, Check } from 'iconoir-react';
 
 export const ContactSection: React.FC = () => {
+  const { t } = useLanguage();
+  const packages = [
+    t('Paket 2 \u2014 Company Profile (Rekomendasi)', 'Package 2 \u2014 Company Profile (Recommended)'),
+    t('Paket 1 \u2014 High Converting Landing Page', 'Package 1 \u2014 High Converting Landing Page'),
+    t('Paket 3 \u2014 Custom Web Application', 'Package 3 \u2014 Custom Web Application'),
+    t('Kustom / Tanya Dulu', 'Custom / Ask First'),
+  ];
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
-    packageType: 'Paket 2 — Company Profile (Rekomendasi)',
+    packageType: 0,
   });
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<'nameRequired' | 'nameLong' | 'phone' | null>(null);
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -19,29 +27,25 @@ export const ContactSection: React.FC = () => {
     const cleanPhone = formData.phone.trim();
 
     if (!cleanName) {
-      setError('Nama lengkap / perusahaan wajib diisi.');
+      setError('nameRequired');
       return;
     }
     if (cleanName.length > 100) {
-      setError('Nama terlalu panjang (maksimal 100 karakter).');
+      setError('nameLong');
       return;
     }
 
     // Nomor telepon hanya boleh digit, spasi, dash, dan diawali optional + (8-20 karakter)
     const phoneRegex = /^\+?[0-9\s-]{8,20}$/;
     if (!cleanPhone || !phoneRegex.test(cleanPhone)) {
-      setError('Nomor WhatsApp tidak valid (masukkan 8-20 digit angka, contoh: 08123456789 atau +6281234567890).');
+      setError('phone');
       return;
     }
 
     setError(null);
 
     // Build WhatsApp message
-    const message = `Halo Z Developer, saya ingin konsultasi website.%0A%0A*Nama*: ${encodeURIComponent(
-      cleanName
-    )}%0A*WhatsApp*: ${encodeURIComponent(cleanPhone)}%0A*Paket*: ${encodeURIComponent(
-      formData.packageType
-    )}`;
+    const message = encodeURIComponent(`${t('Halo Z Developer, saya ingin konsultasi website.', 'Hello Z Developer, I would like a website consultation.')}\n\n*${t('Nama', 'Name')}*: ${cleanName}\n*WhatsApp*: ${cleanPhone}\n*${t('Paket', 'Package')}*: ${packages[formData.packageType]}`);
     const url = `https://wa.me/6281234567890?text=${message}`;
 
     setSubmitted(true);
@@ -73,25 +77,24 @@ export const ContactSection: React.FC = () => {
             <div className="lg:col-span-7 space-y-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/30 text-blue-300 text-xs font-semibold">
                 <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>Slot Project Bulan Ini Terbuka</span>
+                <span>{t("Slot Project Bulan Ini Terbuka", "Project Slots Open This Month")}</span>
               </div>
 
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-white leading-tight">
-                Punya Rencana Website? <br className="hidden sm:inline" />
+                {t("Punya Rencana Website?", "Have a Website in Mind?")} <br className="hidden sm:inline" />
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-300 to-cyan-300">
-                  Mari Diskusi Langsung.
+                  {t("Mari Diskusi Langsung.", "Let's Talk.")}
                 </span>
               </h2>
 
               <p className="text-slate-300 text-base sm:text-lg leading-relaxed max-w-xl">
-                Ceritakan kebutuhan bisnis Anda. Kami bantu bedah struktur halaman, rekomendasi
-                teknologi terbaik, dan perkiraan estimasi biaya tanpa komitmen awal apapun.
+                {t("Ceritakan kebutuhan bisnis Anda. Kami bantu bedah struktur halaman, rekomendasi\nteknologi terbaik, dan perkiraan estimasi biaya tanpa komitmen awal apapun.", "Tell us about your business needs. We will help plan your pages, recommend technology, and estimate costs with no upfront commitment.")}
               </p>
 
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
                 {/* Direct WhatsApp CTA */}
                 <a
-                  href="https://wa.me/6281234567890?text=Halo%20Z%20Developer,%20saya%20tertarik%20konsultasi%20pembuatan%20website"
+                  href={`https://wa.me/6281234567890?text=${encodeURIComponent(t('Halo Z Developer, saya tertarik konsultasi pembuatan website', 'Hello Z Developer, I am interested in a website consultation'))}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-bold text-sm bg-emerald-500 hover:bg-emerald-600 text-white shadow-xl shadow-emerald-500/20 transform hover:-translate-y-0.5 transition-all duration-200"
@@ -99,7 +102,7 @@ export const ContactSection: React.FC = () => {
                   <Icon size="base" aria-hidden="true" className="text-white">
                     <Whatsapp />
                   </Icon>
-                  <span>Konsultasi Gratis via WhatsApp</span>
+                  <span>{t("Konsultasi Gratis via WhatsApp", "Free Consultation via WhatsApp")}</span>
                 </a>
 
                 {/* Secondary Email CTA */}
@@ -110,7 +113,7 @@ export const ContactSection: React.FC = () => {
                   <Icon size="base" aria-hidden="true" className="text-slate-400">
                     <Mail />
                   </Icon>
-                  <span>Kirim Brief via Email</span>
+                  <span>{t("Kirim Brief via Email", "Send a Brief via Email")}</span>
                 </a>
               </div>
             </div>
@@ -118,9 +121,9 @@ export const ContactSection: React.FC = () => {
             {/* Right: Quick Request Form */}
             <div className="lg:col-span-5">
               <div className="bg-white/10 backdrop-blur-md rounded-2xl p-6 sm:p-8 border border-white/10 shadow-lg">
-                <h3 className="text-lg font-bold text-white mb-2">Form Singkat Request Demo</h3>
+                <h3 className="text-lg font-bold text-white mb-2">{t("Form Singkat Request Demo", "Quick Demo Request Form")}</h3>
                 <p className="text-xs text-slate-300 mb-5">
-                  Isi detail kebutuhan Anda dan kami akan hubungi dalam 1x24 jam.
+                  {t("Isi detail kebutuhan Anda dan kami akan hubungi dalam 1x24 jam.", "Tell us what you need and we will contact you within 24 hours.")}
                 </p>
 
                 {submitted ? (
@@ -130,9 +133,9 @@ export const ContactSection: React.FC = () => {
                         <Check />
                       </Icon>
                     </div>
-                    <p className="font-bold text-white">Permintaan Terkirim!</p>
+                    <p className="font-bold text-white">{t("Permintaan Terkirim!", "Request Sent!")}</p>
                     <p className="text-xs text-emerald-300">
-                      WhatsApp Anda sedang dibuka. Tim kami segera menanggapi.
+                      {t("WhatsApp Anda sedang dibuka. Tim kami segera menanggapi.", "WhatsApp is opening. Our team will respond shortly.")}
                     </p>
                   </div>
                 ) : (
@@ -142,13 +145,13 @@ export const ContactSection: React.FC = () => {
                         role="alert"
                         className="p-3 rounded-xl bg-rose-950/80 border border-rose-800 text-rose-200 text-xs"
                       >
-                        {error}
+                        {error === 'nameRequired' ? t('Nama lengkap / perusahaan wajib diisi.', 'Full name / company is required.') : error === 'nameLong' ? t('Nama terlalu panjang (maksimal 100 karakter).', 'Name is too long (maximum 100 characters).') : t('Nomor WhatsApp tidak valid (masukkan 8-20 karakter, contoh: 08123456789 atau +6281234567890).', 'Invalid WhatsApp number (enter 8-20 characters, e.g. 08123456789 or +6281234567890).')}
                       </div>
                     )}
 
                     <div>
                       <label htmlFor="client-name" className="block text-xs font-medium text-slate-300 mb-1">
-                        Nama Lengkap / Perusahaan
+                        {t("Nama Lengkap / Perusahaan", "Full Name / Company")}
                       </label>
                       <input
                         id="client-name"
@@ -160,14 +163,14 @@ export const ContactSection: React.FC = () => {
                           setFormData({ ...formData, name: e.target.value });
                           if (error) setError(null);
                         }}
-                        placeholder="Contoh: Budi (PT Maju Jaya)"
+                        placeholder={t('Contoh: Budi (PT Maju Jaya)', 'Example: Budi (PT Maju Jaya)')}
                         className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900/80 border border-slate-700 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                       />
                     </div>
 
                     <div>
                       <label htmlFor="client-phone" className="block text-xs font-medium text-slate-300 mb-1">
-                        Nomor WhatsApp Aktif
+                        {t("Nomor WhatsApp Aktif", "Active WhatsApp Number")}
                       </label>
                       <input
                         id="client-phone"
@@ -175,32 +178,29 @@ export const ContactSection: React.FC = () => {
                         required
                         maxLength={20}
                         pattern="^\+?[0-9\s-]{8,20}$"
-                        title="Nomor telepon aktif, 8-20 karakter angka, contoh: 08123456789 atau +6281234567890"
+                        title={t('Nomor telepon aktif, 8-20 karakter angka, contoh: 08123456789 atau +6281234567890', 'Active phone number, 8-20 characters, e.g. 08123456789 or +6281234567890')}
                         value={formData.phone}
                         onChange={(e) => {
                           const sanitized = e.target.value.replace(/[^0-9+\s-]/g, '').slice(0, 20);
                           setFormData({ ...formData, phone: sanitized });
                           if (error) setError(null);
                         }}
-                        placeholder="Contoh: 08123456789"
+                        placeholder={t('Contoh: 08123456789', 'Example: 08123456789')}
                         className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900/80 border border-slate-700 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
                       />
                     </div>
 
                     <div>
                       <label htmlFor="client-package" className="block text-xs font-medium text-slate-300 mb-1">
-                        Rencana Paket / Jenis Website
+                        {t("Rencana Paket / Jenis Website", "Desired Package / Website Type")}
                       </label>
                       <select
                         id="client-package"
                         value={formData.packageType}
-                        onChange={(e) => setFormData({ ...formData, packageType: e.target.value })}
+                        onChange={(e) => setFormData({ ...formData, packageType: Number(e.target.value) })}
                         className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-slate-700 text-xs sm:text-sm text-white focus:outline-none focus:border-blue-500"
                       >
-                        <option>Paket 2 — Company Profile (Rekomendasi)</option>
-                        <option>Paket 1 — High Converting Landing Page</option>
-                        <option>Paket 3 — Custom Web Application</option>
-                        <option>Kustom / Tanya Dulu</option>
+                        {packages.map((label, index) => <option key={index} value={index}>{label}</option>)}
                       </select>
                     </div>
 
@@ -208,7 +208,7 @@ export const ContactSection: React.FC = () => {
                       type="submit"
                       className="w-full py-3 px-4 rounded-xl font-bold text-xs sm:text-sm bg-blue-600 hover:bg-blue-500 text-white shadow-md transition-colors flex items-center justify-center gap-2 cursor-pointer focus:outline-none focus:ring-2 focus:ring-blue-400"
                     >
-                      <span>Kirim &amp; Dapatkan Penawaran</span>
+                      <span>{t("Kirim & Dapatkan Penawaran", "Send & Get a Quote")}</span>
                       <Icon size="xs" aria-hidden="true">
                         <Send />
                       </Icon>

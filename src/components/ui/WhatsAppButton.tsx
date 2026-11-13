@@ -1,6 +1,7 @@
 import React from 'react';
 import { Whatsapp } from 'iconoir-react';
 import { Icon } from './Icon';
+import { useLanguage } from '../../context/LanguageContext';
 
 export interface WhatsAppButtonProps {
   phoneNumber?: string;
@@ -10,14 +11,15 @@ export interface WhatsAppButtonProps {
 
 export const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
   phoneNumber = '6281234567890',
-  defaultMessage = 'Halo Z Developer, saya tertarik konsultasi pembuatan website.',
+  defaultMessage,
   className = '',
 }) => {
-  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(defaultMessage)}`;
+  const { t } = useLanguage();
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(defaultMessage ?? t('Halo Z Developer, saya tertarik konsultasi pembuatan website.', 'Hello Z Developer, I am interested in a website consultation.'))}`;
 
   return (
     <aside
-      aria-label="Customer Support Floating Action Button"
+      aria-label={t('Dukungan pelanggan', 'Customer support')}
       className={`fixed bottom-6 right-6 z-50 flex items-center gap-3 ${className}`.trim()}
     >
 
@@ -26,7 +28,7 @@ export const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({
         href={whatsappUrl}
         target="_blank"
         rel="noopener noreferrer"
-        aria-label="Hubungi kami via WhatsApp Z Developer"
+        aria-label={t('Hubungi kami via WhatsApp Z Developer', 'Contact Z Developer via WhatsApp')}
         className="relative group p-3.5 sm:p-4 rounded-full bg-emerald-500 hover:bg-emerald-600 text-white shadow-2xl shadow-emerald-500/40 hover:scale-110 active:scale-95 transition-all duration-200 flex items-center justify-center min-w-[48px] min-h-[48px] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 focus-visible:ring-offset-2"
       >
         {/* Ambient Pulse Ripple */}

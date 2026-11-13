@@ -1,0 +1,11 @@
+url: http://localhost:5173/
+---
+- launchApp
+- assertVisible: Website Cepat, Rapi & Siap Pakai
+- tapOn: English
+- assertVisible: Fast, Polished Websites Ready to Launch
+- assertVisible: Choose the Right Package
+- assertVisible: Full Name / Company
+- tapOn: Bahasa Indonesia
+- assertVisible: Website Cepat, Rapi & Siap Pakai
+- assertVisible: Nama Lengkap / Perusahaan

@@ -69,3 +69,9 @@ export const pricingTiers: PricingTier[] = [
     ],
   },
 ];
+
+export const englishPricingTiers: PricingTier[] = [
+  { ...pricingTiers[0], badgeCategory: 'Package 1 · Starter', subtitle: 'Ideal for one-page product or service promotions, ad campaigns, and leads.', price: 'Rp 1.5 million', deliveryTime: 'Estimated 3–5 Working Days', ctaText: 'Choose Landing Page', features: ['1 Long Page (Hero, Features, Testimonials, CTA)', '100% Responsive Mobile-First Design', 'Direct WhatsApp Button & Meta Pixel Ready', '2 Free Minor Revision Rounds', 'Full Source Code Handover (Git repo)'] },
+  { ...pricingTiers[1], badgeCategory: 'Package 2 · Business', subtitle: 'A multi-page business profile to build credibility, showcase services, and improve Google SEO.', price: 'Rp 3.5 million', deliveryTime: 'Estimated 7–14 Working Days', ctaText: 'Choose Company Profile (Recommended)', features: ['Up to 5–7 Fully Structured Pages', 'PageSpeed Score 90+ (Fast & Lightweight)', 'CMS Ready (Update portfolio & blog yourself)', 'On-Page SEO & Google Search Console Integration', '30-Day Maintenance & Bug-Free Guarantee'] },
+  { ...pricingTiers[2], badgeCategory: 'Package 3 · Enterprise', name: 'Custom Web App', subtitle: 'A web application with custom features, database architecture, role-based authentication, and a dashboard.', price: 'Rp 7.5 million', deliveryTime: 'Estimated 14–30 Working Days', ctaText: 'Discuss a Custom Web App', features: ['Scalable Full-Stack Architecture (React/Next + Backend)', 'Multi-User Authentication & Role Permissions', 'Payment Gateway / External API Integration', 'Architecture Documentation & Full Code Handover', '60-Day Guarantee & Priority Technical Support SLA'] },
+];

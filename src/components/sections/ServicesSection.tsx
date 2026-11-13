@@ -1,8 +1,9 @@
+import { useLanguage } from '../../context/LanguageContext';
 import React from 'react';
 import { Container } from '../layout/Container';
 import { PillBadge } from '../ui/PillBadge';
 import { Icon } from '../ui/Icon';
-import { services } from '../../data/services';
+import { services, englishServices } from '../../data/services';
 import { Flash, Building, Code, Check, ArrowRight, Spark } from 'iconoir-react';
 
 const iconMap = {
@@ -12,6 +13,7 @@ const iconMap = {
 };
 
 export const ServicesSection: React.FC = () => {
+  const { t, language } = useLanguage();
   return (
     <section
       id="layanan"
@@ -29,21 +31,20 @@ export const ServicesSection: React.FC = () => {
                 </Icon>
               }
             >
-              Layanan Z Developer
+              {t("Layanan Z Developer", "Z Developer Services")}
             </PillBadge>
           </div>
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-950 dark:text-white leading-tight mb-5">
-            Solusi Website Tepat Guna Sesuai Skala Bisnis Anda
+            {t("Solusi Website Tepat Guna Sesuai Skala Bisnis Anda", "Website Solutions Tailored to Your Business")}
           </h2>
           <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300 font-normal leading-relaxed">
-            Bukan template generik pasaran. Kami membangun website dari nol dengan clean code, desain
-            eksklusif, serta performa kilat yang siap menghasilkan leads dan transaksi.
+            {t("Bukan template generik pasaran. Kami membangun website dari nol dengan clean code, desain\neksklusif, serta performa kilat yang siap menghasilkan leads dan transaksi.", "No generic templates. We build websites from scratch with clean code, distinctive designs, and fast performance to generate leads and sales.")}
           </p>
         </div>
 
         {/* 3-Column Service Feature Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-10">
-          {services.map((item) => {
+          {(language === 'en' ? englishServices : services).map((item) => {
             const IconComponent = iconMap[item.iconName];
             return (
               <div

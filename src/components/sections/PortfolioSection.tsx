@@ -1,3 +1,4 @@
+import { useLanguage } from '../../context/LanguageContext';
 import React from 'react';
 import { Container } from '../layout/Container';
 import { PillBadge } from '../ui/PillBadge';
@@ -7,6 +8,7 @@ import { featuredProject, portfolioProjects } from '../../data/portfolio';
 import { ViewColumns2, ArrowRight, Whatsapp, Check, Spark, Code } from 'iconoir-react';
 
 export const PortfolioSection: React.FC = () => {
+  const { t } = useLanguage();
   const hasProjects = portfolioProjects.length > 0;
 
   return (
@@ -27,24 +29,23 @@ export const PortfolioSection: React.FC = () => {
                   </Icon>
                 }
               >
-                Portofolio Karya Nyata
+                {t("Portofolio Karya Nyata", "Our Portfolio")}
               </PillBadge>
             </div>
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-950 dark:text-white leading-tight mb-4">
-              Bukti Kerja, Bukan Sekadar Janji
+              {t("Bukti Kerja, Bukan Sekadar Janji", "Work That Speaks for Itself")}
             </h2>
             <p className="text-base sm:text-lg text-slate-600 dark:text-slate-300">
-              Koleksi website dan web app yang kami bangun dengan standar clean code, kecepatan optimal,
-              dan user experience modern.
+              {t("Koleksi website dan web app yang kami bangun dengan standar clean code, kecepatan optimal,\ndan user experience modern.", "A collection of websites and web apps built with clean code, optimal speed, and a modern user experience.")}
             </p>
           </div>
 
           <div className="flex items-center gap-3">
             <span className="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
-              Status Kurasi:
+              {t("Status Kurasi:", "Curation status:")}
             </span>
             <span className="px-3 py-1 rounded-full bg-blue-600 text-white font-bold text-xs">
-              {hasProjects ? `${portfolioProjects.length}+ Proyek` : 'Tahap Kurasi'}
+              {hasProjects ? `${portfolioProjects.length}+ ${t('Proyek', 'Projects')}` : t('Tahap Kurasi', 'Being Curated')}
             </span>
           </div>
         </div>
@@ -63,17 +64,15 @@ export const PortfolioSection: React.FC = () => {
               <Icon size="xs" aria-hidden="true" className="text-blue-600 dark:text-blue-400">
                 <Spark />
               </Icon>
-              <span>Dokumentasi Dalam Persiapan</span>
+              <span>{t("Dokumentasi Dalam Persiapan", "Documentation in Progress")}</span>
             </div>
 
             <h3 className="text-2xl sm:text-3xl font-extrabold text-slate-950 dark:text-white tracking-tight mb-3">
-              Portfolio Sedang Disiapkan
+              {t("Portfolio Sedang Disiapkan", "Portfolio Coming Soon")}
             </h3>
 
             <p className="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-xl mx-auto leading-relaxed mb-8">
-              Kami sedang mengkurasi dokumentasi studi kasus dan showcase live project terbaik untuk
-              ditampilkan. Butuh referensi hasil kerja nyata atau ingin mendiskusikan web app yang
-              sesuai dengan kebutuhan bisnis Anda?
+              {t("Kami sedang mengkurasi dokumentasi studi kasus dan showcase live project terbaik untuk\nditampilkan. Butuh referensi hasil kerja nyata atau ingin mendiskusikan web app yang\nsesuai dengan kebutuhan bisnis Anda?", "We are preparing case studies and live project showcases. Would you like examples of our work or to discuss a web app for your business?")}
             </p>
 
             {/* Action Buttons */}
@@ -81,7 +80,7 @@ export const PortfolioSection: React.FC = () => {
               <Button
                 variant="primary"
                 size="md"
-                href="https://wa.me/6281234567890?text=Halo%20Z%20Developer,%20saya%20ingin%20konsultasi%20dan%20melihat%20sampel%20website"
+                href={`https://wa.me/6281234567890?text=${encodeURIComponent(t('Halo Z Developer, saya ingin konsultasi dan melihat sampel website', 'Hello Z Developer, I would like a consultation and to see website samples'))}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto shadow-lg shadow-blue-500/25"
@@ -91,7 +90,7 @@ export const PortfolioSection: React.FC = () => {
                   </Icon>
                 }
               >
-                Minta Sampel via WhatsApp
+                {t("Minta Sampel via WhatsApp", "Request Samples via WhatsApp")}
               </Button>
 
               <Button
@@ -105,7 +104,7 @@ export const PortfolioSection: React.FC = () => {
                   </Icon>
                 }
               >
-                Konsultasi Kebutuhan
+                {t("Konsultasi Kebutuhan", "Discuss Your Needs")}
               </Button>
             </div>
 
@@ -121,13 +120,13 @@ export const PortfolioSection: React.FC = () => {
                 <Icon size="sm" aria-hidden="true" className="text-emerald-500">
                   <Check />
                 </Icon>
-                <span>Live Demo Khusus saat Diskusi</span>
+                <span>{t("Live Demo Khusus saat Diskusi", "Live Demo During Consultation")}</span>
               </div>
               <div className="flex items-center gap-2">
                 <Icon size="sm" aria-hidden="true" className="text-emerald-500">
                   <Check />
                 </Icon>
-                <span>Privasi &amp; NDA Terjaga</span>
+                <span>{t("Privasi & NDA Terjaga", "Privacy & NDA Protected")}</span>
               </div>
             </div>
           </div>
@@ -145,7 +144,7 @@ export const PortfolioSection: React.FC = () => {
                             <Icon size="xs" aria-hidden="true" className="text-blue-600">
                               <Spark />
                             </Icon>
-                            <span>Featured Highlight</span>
+                            <span>{t("Featured Highlight", "Featured Highlight")}</span>
                           </span>
                         </div>
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useTheme } from '../../context/ThemeContext';
+import { useLanguage } from '../../context/LanguageContext';
 import { Icon } from './Icon';
 import { SunLight, HalfMoon } from 'iconoir-react';
 
@@ -9,14 +10,15 @@ export interface ThemeToggleProps {
 
 export const ThemeToggle: React.FC<ThemeToggleProps> = ({ className = '' }) => {
   const { theme, toggleTheme } = useTheme();
+  const { t } = useLanguage();
   const isDark = theme === 'dark';
 
   return (
     <button
       type="button"
       onClick={toggleTheme}
-      aria-label={isDark ? 'Beralih ke mode terang' : 'Beralih ke mode gelap'}
-      title={isDark ? 'Beralih ke mode terang' : 'Beralih ke mode gelap'}
+      aria-label={isDark ? t('Beralih ke mode terang', 'Switch to light mode') : t('Beralih ke mode gelap', 'Switch to dark mode')}
+      title={isDark ? t('Beralih ke mode terang', 'Switch to light mode') : t('Beralih ke mode gelap', 'Switch to dark mode')}
       className={`relative inline-flex items-center justify-center w-10 h-10 rounded-xl border transition-all duration-200 select-none cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 dark:focus-visible:ring-offset-slate-900 active:scale-95 ${
         isDark
           ? 'bg-slate-800/80 hover:bg-slate-700/80 text-amber-300 hover:text-amber-200 border-slate-700 shadow-sm'
