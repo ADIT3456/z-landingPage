@@ -56,7 +56,7 @@ export const ContactSection: React.FC = () => {
 
     // Build WhatsApp message
     const message = encodeURIComponent(`${t('Halo Z Developer, saya ingin konsultasi website.', 'Hello Z Developer, I would like a website consultation.')}\n\n*${t('Nama', 'Name')}*: ${cleanName}\n*WhatsApp*: ${cleanPhone}\n*${t('Paket', 'Package')}*: ${packages[formData.packageType]}`);
-    const url = `https://wa.me/6281234567890?text=${message}`;
+    const url = `https://wa.me/6285187228960?text=${message}`;
 
     const whatsappWindow = window.open(url, '_blank');
     if (!whatsappWindow) {
@@ -105,7 +105,7 @@ export const ContactSection: React.FC = () => {
               <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
                 {/* Direct WhatsApp CTA */}
                 <a
-                  href={`https://wa.me/6281234567890?text=${encodeURIComponent(t('Halo Z Developer, saya tertarik konsultasi pembuatan website', 'Hello Z Developer, I am interested in a website consultation'))}`}
+                  href={`https://wa.me/6285187228960?text=${encodeURIComponent(t('Halo Z Developer, saya tertarik konsultasi pembuatan website', 'Hello Z Developer, I am interested in a website consultation'))}`}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full font-bold text-sm bg-emerald-500 hover:bg-emerald-600 text-white shadow-xl shadow-emerald-500/20 transform hover:-translate-y-0.5 transition-all duration-200"
@@ -156,7 +156,7 @@ export const ContactSection: React.FC = () => {
                         role="alert"
                         className="p-3 rounded-xl bg-rose-950/80 border border-rose-800 text-rose-200 text-xs"
                       >
-                        {error === 'nameRequired' ? t('Nama lengkap / perusahaan wajib diisi.', 'Full name / company is required.') : error === 'nameLong' ? t('Nama terlalu panjang (maksimal 100 karakter).', 'Name is too long (maximum 100 characters).') : t('Nomor WhatsApp tidak valid (masukkan 8-20 karakter, contoh: 08123456789 atau +6281234567890).', 'Invalid WhatsApp number (enter 8-20 characters, e.g. 08123456789 or +6281234567890).')}
+                        {error === 'nameRequired' ? t('Nama lengkap / perusahaan wajib diisi.', 'Full name / company is required.') : error === 'nameLong' ? t('Nama terlalu panjang (maksimal 100 karakter).', 'Name is too long (maximum 100 characters).') : t('Nomor WhatsApp tidak valid (masukkan 8-20 karakter, contoh: 08123456789 atau +6285187228960).', 'Invalid WhatsApp number (enter 8-20 characters, e.g. 08123456789 or +6285187228960).')}
                       </div>
                     )}
 
@@ -189,7 +189,7 @@ export const ContactSection: React.FC = () => {
                         required
                         maxLength={20}
                         pattern="^\+?[0-9\s-]{8,20}$"
-                        title={t('Nomor telepon aktif, 8-20 karakter angka, contoh: 08123456789 atau +6281234567890', 'Active phone number, 8-20 characters, e.g. 08123456789 or +6281234567890')}
+                        title={t('Nomor telepon aktif, 8-20 karakter angka, contoh: 08123456789 atau +6285187228960', 'Active phone number, 8-20 characters, e.g. 08123456789 or +6285187228960')}
                         value={formData.phone}
                         onChange={(e) => {
                           const sanitized = e.target.value.replace(/[^0-9+\s-]/g, '').slice(0, 20);

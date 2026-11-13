@@ -88,7 +88,7 @@ export const PortfolioSection: React.FC = () => {
               <Button
                 variant="primary"
                 size="md"
-                href={`https://wa.me/6281234567890?text=${encodeURIComponent(t('Halo Z Developer, saya ingin konsultasi dan melihat sampel website', 'Hello Z Developer, I would like a consultation and to see website samples'))}`}
+                href={`https://wa.me/6285187228960?text=${encodeURIComponent(t('Halo Z Developer, saya ingin konsultasi dan melihat sampel website', 'Hello Z Developer, I would like a consultation and to see website samples'))}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-full sm:w-auto shadow-lg shadow-blue-500/25"
@@ -245,7 +245,7 @@ export const PortfolioSection: React.FC = () => {
               <Button
                 variant="primary"
                 size="md"
-                href={`https://wa.me/6281234567890?text=${encodeURIComponent(t('Halo Z Developer, saya ingin konsultasi dan request sampel website kustom', 'Hello Z Developer, I would like a consultation and a custom website sample'))}`}
+                href={`https://wa.me/6285187228960?text=${encodeURIComponent(t('Halo Z Developer, saya ingin konsultasi dan request sampel website kustom', 'Hello Z Developer, I would like a consultation and a custom website sample'))}`}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="whitespace-nowrap w-full sm:w-auto shadow-md shadow-blue-500/20"
